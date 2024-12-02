@@ -9,8 +9,7 @@ V8 has has a non-standard [Stack Trace API](https://v8.dev/docs/stack-trace-api)
 
 In August 2023, [JSC also shipped this method](https://github.com/WebKit/WebKit/commit/997e074bb35ed07b69c9b821141c91dd548e0d02) 
 
-Has now turned into a web-compatability problem, and as a result it is time it 
-is standardized. 
+This method [has now turned into a web-compatability problem](https://bugzilla.mozilla.org/show_bug.cgi?id=1886820), and as a result we should now standardize it. 
 
 ## `Error.captureStackTrace`
 
@@ -47,4 +46,4 @@ I would actually like to specify this like the JSC one. It's simpler. Similarly,
 
 ## Related Work
 
-- The [Error Stacks](https://github.com/mgaudet/proposal-error-capturestacktrace) proposal is almost a pre-requisite for this, as mostly the current spec doesn't really talk about stacks. However, for this proposal I'd argue 
+- The [Error Stacks](https://github.com/mgaudet/proposal-error-capturestacktrace) proposal is largely an orthogonal one to this, but it would provide framework and text to talk about stack strings, as mostly the current spec doesn't really talk about stacks. However, for this proposal I'd argue we don't need to specify the contents of stack strings. 
