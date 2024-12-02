@@ -1,6 +1,7 @@
 # Error.captureStackTrace 
 
 **Stage**: [Stage 0](https://tc39.es/process-document/)
+
 **Champion**: Matthew Gaudet (Mozilla) 
 
 
