@@ -38,6 +38,13 @@ To quote the [V8 documentation](https://v8.dev/docs/stack-trace-api):
 Unfortunately, the JSC implementation diverges from the V8 one: 
 
 - JSC attaches a string valued prop to the object provided, where V8 instead installs their stack-getter function.
+- It uses the JSC stack string format.
 
-I would actually like to specify this like the JSC one. It's simpler. 
+I would actually like to specify this like the JSC one. It's simpler. Similarly, the text for the contents of the stack string should probably be something along the lines of 
 
+> The contents of the stack string is a textual representation of the [execution context stack](https://tc39.es/ecma262/#execution-context-stack), however the actual format and contents are implemetation defined and should not be relied upon to be identical across implementations.
+
+
+## Related Work
+
+- The [Error Stacks](https://github.com/mgaudet/proposal-error-capturestacktrace) proposal is almost a pre-requisite for this, as mostly the current spec doesn't really talk about stacks. However, for this proposal I'd argue 
