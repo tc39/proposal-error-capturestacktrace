@@ -46,4 +46,5 @@ I would actually like to specify this like the JSC one. It's simpler. Similarly,
 
 ## Related Work
 
-- The [Error Stacks](https://github.com/mgaudet/proposal-error-capturestacktrace) proposal is largely an orthogonal one to this, but it would provide framework and text to talk about stack strings, as mostly the current spec doesn't really talk about stacks. However, for this proposal I'd argue we don't need to specify the contents of stack strings. 
+- The [Error Stacks](https://github.com/mgaudet/proposal-error-capturestacktrace) proposal is largely an orthogonal one to this, but it would provide framework and text to talk about stack strings, as mostly the current spec doesn't really talk about stacks. However, for this proposal I'd argue we don't need to specify the contents of stack strings.
+- The [Error Stack Accessor](https://github.com/ljharb/proposal-error-stack-accessor/) proposal could be the other route by which the spec starts to talk about stacks. 
