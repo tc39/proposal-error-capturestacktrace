@@ -1,6 +1,6 @@
 # Error.captureStackTrace 
 
-**Stage**: [Stage 0](https://tc39.es/process-document/)
+**Stage**: [Stage 1](https://tc39.es/process-document/)
 
 **Champion**: Matthew Gaudet (Mozilla) 
 
@@ -48,3 +48,6 @@ I would actually like to specify this like the JSC one. It's simpler. Similarly,
 
 - The [Error Stacks](https://github.com/mgaudet/proposal-error-capturestacktrace) proposal is largely an orthogonal one to this, but it would provide framework and text to talk about stack strings, as mostly the current spec doesn't really talk about stacks. However, for this proposal I'd argue we don't need to specify the contents of stack strings.
 - The [Error Stack Accessor](https://github.com/ljharb/proposal-error-stack-accessor/) proposal could be the other route by which the spec starts to talk about stacks. 
+
+## History
+- Presented February 2025, and achieved Stage 1 [(slides)](https://docs.google.com/presentation/d/1SFdS9n5JR7Jqz29s7ApvkqDOqOfPW-IaBR2orK828As/mobilepresent?slide=id.p) (notes not yet posted)
