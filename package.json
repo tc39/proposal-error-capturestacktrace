@@ -1,11 +1,9 @@
 {
   "private": true,
-  "name": "template-for-proposals",
-  "description": "A repository template for ECMAScript proposals.",
+  "name": "proposal-error-capturestacktrace",
+  "description": "ECMAScript Proposal, specs, and reference implementation for Error.captureStackTrace",
   "scripts": {
-    "start": "npm run build-loose -- --watch",
-    "build": "npm run build-loose -- --strict",
-    "build-loose": "node -e 'fs.mkdirSync(\"build\", { recursive: true })' && ecmarkup --load-biblio @tc39/ecma262-biblio --verbose spec.emu build/index.html --lint-spec"
+    "build": "ecmarkup --load-biblio @tc39/ecma262-biblio --verbose spec.emu --assets-dir dist dist/index.html --lint-spec"
   },
   "homepage": "https://github.com/tc39/template-for-proposals#readme",
   "repository": {
@@ -16,8 +14,5 @@
   "devDependencies": {
     "@tc39/ecma262-biblio": "^2.1.2775",
     "ecmarkup": "^20.0.0"
-  },
-  "engines": {
-    "node": ">= 12"
   }
 }
