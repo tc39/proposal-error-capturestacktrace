@@ -4,20 +4,22 @@ on:
   push:
     branches:
       - main
+permissions:
+  contents: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: ljharb/actions/node/install@main
-      name: 'nvm install lts/* && npm install'
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: lts/*
-    - run: npm run build
-    - uses: JamesIves/github-pages-deploy-action@v4.3.3
+        node-version: 20
+    - run: >
+        npm ci --no-audit && npm run build
+    - uses: JamesIves/github-pages-deploy-action@v4.5.0
       with:
         branch: gh-pages
-        folder: build
+        folder: dist
         clean: true
