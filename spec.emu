@@ -25,7 +25,7 @@ markEffects: true
       <h1>Properties of the Error Constructor</h1>
 
       <emu-clause id="sec-error.capturestacktrace">
-        <h1>Error.captureStackTrace ( _error_, _constructor_ )</h1>
+        <h1>Error.captureStackTrace ( _error_ [ , _constructor_ ])</h1>
         <emu-alg>
           1. If _error_ is not an Object, throw a *TypeError* exception.
           1. If _constructor_ is not *undefined*, then
