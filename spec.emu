@@ -25,12 +25,9 @@ markEffects: true
       <h1>Properties of the Error Constructor</h1>
 
       <emu-clause id="sec-error.capturestacktrace">
-        <h1>Error.captureStackTrace ( _error_ [ , _constructor_ ])</h1>
+        <h1>Error.captureStackTrace ( _error_ [ , _constructor_ ] )</h1>
         <emu-alg>
           1. If _error_ is not an Object, throw a *TypeError* exception.
-          1. If _constructor_ is not *undefined*, then
-            1. If IsCallable(_constructor_) is *false*, throw a *TypeError* exception.
-            1. TODO: No implementations currently check that _constructor_ is callable, this may not be web compatible.
           1. If IsCallable(_constructor_) is *true*, then
             1. Let _string_ be an implementation-defined string that represents the current stack trace, with all stack
                frames above the topmost call to _constructor_, including that call, omitted from the stack trace.
