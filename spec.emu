@@ -34,7 +34,7 @@ markEffects: true
             1. NOTE: This can be used to hide implementation details on the stack trace that aren't useful to user.
           1. Else,
             1. Let _string_ be an implementation-defined string that represents the current stack trace.
-          1. Perform ? SetterThatIgnoresPrototypeProperties(*this* value, _error_, *"stack"*, _string_).
+          1. Perform ? SetterThatIgnoresPrototypeProperties(_error_, OrdinaryObjectCreate(*null*), *"stack"*, _string_).
           1. Return *undefined*.
         </emu-alg>
       </emu-clause>
