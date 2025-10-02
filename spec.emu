@@ -34,7 +34,13 @@ markEffects: true
             1. NOTE: This can be used to hide implementation details on the stack trace that aren't useful to user.
           1. Else,
             1. Let _string_ be an implementation-defined string that represents the current stack trace.
-          1. Perform ? SetterThatIgnoresPrototypeProperties(_error_, OrdinaryObjectCreate(*null*), *"stack"*, _string_).
+          1. Perform an implementation-defined choice of either:
+            1. Perform ? SetterThatIgnoresPrototypeProperties(_error_, OrdinaryObjectCreate(*null*), *"stack"*, _string_)..
+          1. Or:
+            1. If ? IsExtensible( _error_ ) is *false*, throw a *TypeError* exception.
+            1. Let _name_ be an implementation-defined name.
+            1. ! PrivateFieldAdd( _error_, _name_, _string_).
+            1. Perform ! OrdinaryDefineOwnProperty(_error_, *"stack"*, PropertyDescriptor { [[Get]]: ? PrivateGet( _error_, _name_ ), [[Set]]: ? SetterThatIgnoresPrototypeProperties(_error_, OrdinaryObjectCreate(*null*), *"stack"*, _string_)., [[Enumerable]]: true, [[Configurable]]: true }).
           1. Return *undefined*.
         </emu-alg>
       </emu-clause>
