@@ -15,6 +15,35 @@ markEffects: true
   <p></p>
 </emu-intro>
 
+<emu-clause id="sec-agents">
+  <h1>Agents</h1>
+
+  <emu-table id="table-agent-record" caption="Agent Record Fields">
+    <table>
+      <thead>
+        <tr>
+          <th>Field Name</th>
+          <th>Value</th>
+          <th>Meaning</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>[[UseErrorCaptureStackTraceDataProperty]]</td>
+        <td>a Boolean</td>
+        <td>Whether to use a data property or an accessor property for the "stack" property installed by Error.captureStackTrace.</td>
+      </tr>
+    </table>
+  </emu-table>
+
+  <p>Once the values of [[Signifier]], [[IsLockFree1]], [[IsLockFree2]], and [[UseErrorCaptureStackTraceDataProperty]] have been observed by any agent in the agent cluster they cannot change.</p>
+</emu-clause>
+
+<emu-clause id="sec-agent-clusters">
+  <h1>Agent Clusters</h1>
+
+  <p>All agents within a cluster must have the same value for the [[UseErrorCaptureStackTraceDataProperty]] field in their respective Agent Records.</p>
+</emu-clause>
+
 <emu-clause id="sec-fundamental-objects" number="20">
   <h1>Fundamental Objects</h1>
 
@@ -34,9 +63,10 @@ markEffects: true
             1. NOTE: This can be used to hide implementation details on the stack trace that aren't useful to user.
           1. Else,
             1. Let _string_ be an implementation-defined string that represents the current stack trace.
-          1. Perform an implementation-defined choice of either:
+          1. Let _useErrorCaptureStackTraceDataProperty_ be the value of the [[UseErrorCaptureStackTraceDataProperty]] field of the surrounding agent's Agent Record.
+          1. If _useErrorCaptureStackTraceDataProperty_ is *true*, then
             1. Perform ? SetterThatIgnoresPrototypeProperties(_error_, OrdinaryObjectCreate(*null*), *"stack"*, _string_)..
-          1. Or:
+          1. Else,
             1. If ? IsExtensible( _error_ ) is *false*, throw a *TypeError* exception.
             1. Let _name_ be an implementation-defined name.
             1. ! PrivateFieldAdd( _error_, _name_, _string_).
