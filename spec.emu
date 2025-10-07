@@ -28,8 +28,8 @@ markEffects: true
         </tr>
       </thead>
       <tr>
-        <td>[[UseErrorCaptureStackTraceDataProperty]]</td>
-        <td>a Boolean</td>
+        <td>[[ErrorCaptureStackTraceStrategy]]</td>
+        <td>DATAPROPERTY or ACCESSOR</td>
         <td>Whether to use a data property or an accessor property for the "stack" property installed by Error.captureStackTrace.</td>
       </tr>
     </table>
@@ -63,18 +63,20 @@ markEffects: true
             1. NOTE: This can be used to hide implementation details on the stack trace that aren't useful to user.
           1. Else,
             1. Let _string_ be an implementation-defined string that represents the current stack trace.
-          1. Let _useErrorCaptureStackTraceDataProperty_ be the value of the [[UseErrorCaptureStackTraceDataProperty]] field of the surrounding agent's Agent Record.
-          1. If _useErrorCaptureStackTraceDataProperty_ is *true*, then
+          1. Let _strategy_ be the value of the [[ErrorCaptureStackTraceStrategy]] field of the surrounding agent's Agent Record.
+          1. If _strategy_ is DATAPROPERTY, then
             1. Perform ? SetterThatIgnoresPrototypeProperties(_error_, OrdinaryObjectCreate(*null*), *"stack"*, _string_)..
           1. Else,
-            1. If ? IsExtensible( _error_ ) is *false*, throw a *TypeError* exception.
-            1. Let getterClosure be a new Abstract Closure with no parameters that captures _string_ and performs the following steps when called:
+            1. Assert: _strategy_ is ACCESSOR.
+            1. If ? IsExtensible(_error_) is *false*, throw a *TypeError* exception.
+            1. Let _getterClosure_ be a new Abstract Closure with no parameters that captures _string_ and performs the following steps when called:
               1. Return NormalCompletion(_string_).
-            1. Let getter be CreateBuiltinFunction(getterClosure, 0, "", « »).
-            1. Let setterClosure be a new Abstract Closure with parameters (_value_) that captures _error_ and performs the following steps when called:
-              1. Perform ! SetterThatIgnoresPrototypeProperties(_error_, OrdinaryObjectCreate(*null*), *"stack"*, _value_).
-            1. Let setter be CreateBuiltinFunction(setterClosure, 1, "", « »).
-            1. Perform ! OrdinaryDefineOwnProperty(_error_, *"stack"*, PropertyDescriptor { [[Get]]: getter, [[Set]]: setter, [[Enumerable]]: false, [[Configurable]]: true }).
+            1. Let _getter_ be CreateBuiltinFunction(_getterClosure_, 0, "", « »).
+            1. Let _setterClosure_ be a new Abstract Closure with parameters (_value_) that captures _error_ and performs the following steps when called:
+              1. Perform ? SetterThatIgnoresPrototypeProperties(_error_, *null*, *"stack"*, _value_).
+              1. Return NormalCompletion(*undefined*).
+            1. Let _setter_ be CreateBuiltinFunction(_setterClosure_, 1, "", « »).
+            1. Perform ! OrdinaryDefineOwnProperty(_error_, *"stack"*, PropertyDescriptor { [[Get]]: _getter_, [[Set]]: _setter_, [[Enumerable]]: false, [[Configurable]]: true }).
           1. Return *undefined*.
         </emu-alg>
       </emu-clause>
