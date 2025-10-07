@@ -68,9 +68,13 @@ markEffects: true
             1. Perform ? SetterThatIgnoresPrototypeProperties(_error_, OrdinaryObjectCreate(*null*), *"stack"*, _string_)..
           1. Else,
             1. If ? IsExtensible( _error_ ) is *false*, throw a *TypeError* exception.
-            1. Let _name_ be an implementation-defined name.
-            1. ! PrivateFieldAdd( _error_, _name_, _string_).
-            1. Perform ! OrdinaryDefineOwnProperty(_error_, *"stack"*, PropertyDescriptor { [[Get]]: ? PrivateGet( _error_, _name_ ), [[Set]]: ? SetterThatIgnoresPrototypeProperties(_error_, OrdinaryObjectCreate(*null*), *"stack"*, _string_)., [[Enumerable]]: false, [[Configurable]]: true }).
+            1. Let getterClosure be a new Abstract Closure with no parameters that captures _string_ and performs the following steps when called:
+              1. Return NormalCompletion(_string_).
+            1. Let getter be CreateBuiltinFunction(getterClosure, 0, "", « »).
+            1. Let setterClosure be a new Abstract Closure with parameters (_value_) that captures _error_ and performs the following steps when called:
+              1. Perform ! SetterThatIgnoresPrototypeProperties(_error_, OrdinaryObjectCreate(*null*), *"stack"*, _value_).
+            1. Let setter be CreateBuiltinFunction(setterClosure, 1, "", « »).
+            1. Perform ! OrdinaryDefineOwnProperty(_error_, *"stack"*, PropertyDescriptor { [[Get]]: getter, [[Set]]: setter, [[Enumerable]]: false, [[Configurable]]: true }).
           1. Return *undefined*.
         </emu-alg>
       </emu-clause>
