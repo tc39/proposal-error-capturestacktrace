@@ -29,19 +29,19 @@ markEffects: true
       </thead>
       <tr>
         <td>[[ErrorCaptureStackTraceStrategy]]</td>
-        <td>DATAPROPERTY or ACCESSOR</td>
+        <td>~data-property~ or ~accessor~</td>
         <td>Whether to use a data property or an accessor property for the "stack" property installed by Error.captureStackTrace.</td>
       </tr>
     </table>
   </emu-table>
 
-  <p>Once the values of [[Signifier]], [[IsLockFree1]], [[IsLockFree2]], and [[UseErrorCaptureStackTraceDataProperty]] have been observed by any agent in the agent cluster they cannot change.</p>
+  <p>Once the values of [[Signifier]], [[IsLockFree1]], [[IsLockFree2]], and [[ErrorCaptureStackTraceStrategy]] have been observed by any agent in the agent cluster they cannot change.</p>
 </emu-clause>
 
 <emu-clause id="sec-agent-clusters">
   <h1>Agent Clusters</h1>
 
-  <p>All agents within a cluster must have the same value for the [[UseErrorCaptureStackTraceDataProperty]] field in their respective Agent Records.</p>
+  <p>All agents within a cluster must have the same value for the [[ErrorCaptureStackTraceStrategy]] field in their respective Agent Records.</p>
 </emu-clause>
 
 <emu-clause id="sec-fundamental-objects" number="20">
@@ -64,10 +64,10 @@ markEffects: true
           1. Else,
             1. Let _string_ be an implementation-defined string that represents the current stack trace.
           1. Let _strategy_ be the value of the [[ErrorCaptureStackTraceStrategy]] field of the surrounding agent's Agent Record.
-          1. If _strategy_ is DATAPROPERTY, then
+          1. If _strategy_ is ~data-property~, then
             1. Perform ? SetterThatIgnoresPrototypeProperties(_error_, OrdinaryObjectCreate(*null*), *"stack"*, _string_)..
           1. Else,
-            1. Assert: _strategy_ is ACCESSOR.
+            1. Assert: _strategy_ is ~accessor~.
             1. If ? IsExtensible(_error_) is *false*, throw a *TypeError* exception.
             1. Let _getterClosure_ be a new Abstract Closure with no parameters that captures _string_ and performs the following steps when called:
               1. Return NormalCompletion(_string_).
