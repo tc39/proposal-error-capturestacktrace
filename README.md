@@ -53,8 +53,7 @@ The text for the contents of the stack string should probably be something along
 ## Related Work
 
 - The [Error Stacks](https://github.com/tc39/proposal-error-stacks) proposal is largely an orthogonal one to this, but it would provide framework and text to talk about stack strings, as mostly the current spec doesn't really talk about stacks. However, for this proposal I'd argue we don't need to specify the contents of stack strings.
-- The [Error Stack Accessor](https://github.com/tc39/proposal-error-stack-accessor) proposal could be the other route by which the spec starts to talk about stacks. Note that `Error.captureStackTrace` works with any object, whereas the stack accessor proposal only works with `Error` instances, so the
-two proposals are solving different problems.
+- The [Error Stack Accessor](https://github.com/tc39/proposal-error-stack-accessor) proposal could be the other route by which the spec starts to talk about stacks. Note that `Error.captureStackTrace` works with any object, whereas the stack accessor proposal only works with `Error` instances, so the two proposals are solving different problems.
 
 ## History
 - Presented February 2025, and achieved Stage 1 [notes](https://github.com/tc39/notes/blob/main/meetings/2025-02/february-19.md#errorcapturestacktrace-for-stage-1)
