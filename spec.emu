@@ -60,7 +60,8 @@ markEffects: true
             1. NOTE: This can be used to hide implementation details on the stack trace that aren't useful to user.
           1. Else,
             1. Let _string_ be an implementation-defined string that represents the current stack trace.
-          1. Let _strategy_ be the value of the [[ErrorCaptureStackTraceStrategy]] field of the current Realm Record.
+          1. Let _realm_ be the current Realm Record.
+          1. Let _strategy_ be _realm_.[[ErrorCaptureStackTraceStrategy]].
           1. If _strategy_ is ~data-property~, then
             1. Perform ? DefinePropertyOrThrow(_O_, *"stack"*, PropertyDescriptor { [[Value]]: _string_, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true }).
           1. Else,
