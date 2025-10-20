@@ -66,13 +66,13 @@ markEffects: true
             1. Perform ? DefinePropertyOrThrow(_O_, *"stack"*, PropertyDescriptor { [[Value]]: _string_, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true }).
           1. Else,
             1. Assert: _strategy_ is ~accessor~.
-            1. Let _getterClosure_ be a new Abstract Closure with no parameters that captures _string_ and performs the following steps when called:
-              1. Return NormalCompletion(_string_).
-            1. Let _getter_ be CreateBuiltinFunction(_getterClosure_, 0, "", « »).
-            1. Let _setterClosure_ be a new Abstract Closure with parameters (_value_) that captures _O_ and performs the following steps when called:
-              1. Perform ? DefinePropertyOrThrow(_O_, *"stack"*, PropertyDescriptor { [[Value]]: _value_, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true }).
+            1. Let _captureStackSymbol_ be an implementation-defined Symbol value.
+            1. Perform ? DefinePropertyOrThrow(_O_, _captureStackSymbol_, PropertyDescriptor { [[Value]]: _string_, [[Writable]]: true, [[Enumerable]]: false, [[Configurable]]: true }).
+            1. Let _getter_ be a built-in function that takes no arguments and performs the following steps when called:
+              1. Return ? Get(*this* value, _captureStackSymbol_).
+            1. Let _setter_ be a built-in function that takes an argument _value_ and performs the following steps when called:
+              1. Perform ? DefinePropertyOrThrow(*this* value, *"stack"*, PropertyDescriptor { [[Value]]: _value_, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true }).
               1. Return NormalCompletion(*undefined*).
-            1. Let _setter_ be CreateBuiltinFunction(_setterClosure_, 1, "", « »).
             1. Perform ? DefinePropertyOrThrow(_O_, *"stack"*, PropertyDescriptor { [[Get]]: _getter_, [[Set]]: _setter_, [[Enumerable]]: false, [[Configurable]]: true }).
           1. Return *undefined*.
         </emu-alg>
