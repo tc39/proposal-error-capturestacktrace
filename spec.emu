@@ -15,6 +15,32 @@ markEffects: true
   <p></p>
 </emu-intro>
 
+<emu-clause id="sec-code-realms">
+  <h1>Realms</h1>
+  <emu-table id="table-realm-record-fields" caption="Realm Record Fields" oldids="table-21">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Field Name
+          </th>
+          <th>
+            Value
+          </th>
+          <th>
+            Meaning
+          </th>
+        </tr>
+      </thead>
+      <tr>
+        <td>[[ErrorCaptureStackTraceStrategy]]</td>
+        <td>~data-property~ or ~accessor~</td>
+        <td>Whether to use a data property or an accessor property for the "stack" property installed by Error.captureStackTrace.</td>
+      </tr>
+    </table>
+  </emu-table>
+</emu-clause>
+
 <emu-clause id="sec-fundamental-objects" number="20">
   <h1>Fundamental Objects</h1>
 
@@ -25,16 +51,29 @@ markEffects: true
       <h1>Properties of the Error Constructor</h1>
 
       <emu-clause id="sec-error.capturestacktrace">
-        <h1>Error.captureStackTrace ( _error_ [ , _constructor_ ] )</h1>
+        <h1>Error.captureStackTrace ( _O_ [ , _limit_ ] )</h1>
         <emu-alg>
-          1. If _error_ is not an Object, throw a *TypeError* exception.
-          1. If IsCallable(_constructor_) is *true*, then
+          1. If _O_ is not an Object, throw a *TypeError* exception.
+          1. If IsCallable(_limit_) is *true*, then
             1. Let _string_ be an implementation-defined string that represents the current stack trace, with all stack
-               frames above the topmost call to _constructor_, including that call, omitted from the stack trace.
+               frames above the topmost call to _limit_, including that call, omitted from the stack trace.
             1. NOTE: This can be used to hide implementation details on the stack trace that aren't useful to user.
           1. Else,
             1. Let _string_ be an implementation-defined string that represents the current stack trace.
-          1. Perform ? SetterThatIgnoresPrototypeProperties(_error_, OrdinaryObjectCreate(*null*), *"stack"*, _string_).
+          1. Let _realm_ be the current Realm Record.
+          1. Let _strategy_ be _realm_.[[ErrorCaptureStackTraceStrategy]].
+          1. If _strategy_ is ~data-property~, then
+            1. Perform ? DefinePropertyOrThrow(_O_, *"stack"*, PropertyDescriptor { [[Value]]: _string_, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true }).
+          1. Else,
+            1. Assert: _strategy_ is ~accessor~.
+            1. Let _getterClosure_ be a new Abstract Closure with no parameters that captures _string_ and performs the following steps when called:
+              1. Return NormalCompletion(_string_).
+            1. Let _getter_ be CreateBuiltinFunction(_getterClosure_, 0, "", « »).
+            1. Let _setterClosure_ be a new Abstract Closure with parameters (_value_) that captures _O_ and performs the following steps when called:
+              1. Perform ? DefinePropertyOrThrow(_O_, *"stack"*, PropertyDescriptor { [[Value]]: _value_, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true }).
+              1. Return NormalCompletion(*undefined*).
+            1. Let _setter_ be CreateBuiltinFunction(_setterClosure_, 1, "", « »).
+            1. Perform ? DefinePropertyOrThrow(_O_, *"stack"*, PropertyDescriptor { [[Get]]: _getter_, [[Set]]: _setter_, [[Enumerable]]: false, [[Configurable]]: true }).
           1. Return *undefined*.
         </emu-alg>
       </emu-clause>
