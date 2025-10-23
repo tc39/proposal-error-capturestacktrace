@@ -41,6 +41,48 @@ markEffects: true
   </emu-table>
 </emu-clause>
 
+<emu-clause id="sec-well-known-intrinsic-objects">
+  <h1>Well-Known Intrinsic Objects</h1>
+
+  <emu-table id="table-well-known-intrinsic-objects" caption="Well-Known Intrinsic Objects" oldids="table-7">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Intrinsic Name
+          </th>
+          <th>
+            Global Name
+          </th>
+          <th>
+            ECMAScript Language Association
+          </th>
+        </tr>
+      </thead>
+      <tr>
+        <td>
+          %ErrorCaptureStackTraceGetter%
+        </td>
+        <td>
+        </td>
+        <td>
+          The getter installed by `Error.captureStackTrace` (<emu-xref href="#sec-error.capturestacktrace-getter"></emu-xref>)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          %ErrorCaptureStackTraceSetter%
+        </td>
+        <td>
+        </td>
+        <td>
+          The setter installed by `Error.captureStackTrace` (<emu-xref href="#sec-error.capturestacktrace-setter"></emu-xref>)
+        </td>
+      </tr>
+    </table>
+  </emu-table>
+</emu-clause>
+
 <emu-clause id="sec-fundamental-objects" number="20">
   <h1>Fundamental Objects</h1>
 
@@ -66,15 +108,29 @@ markEffects: true
             1. Perform ? DefinePropertyOrThrow(_O_, *"stack"*, PropertyDescriptor { [[Value]]: _string_, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true }).
           1. Else,
             1. Assert: _strategy_ is ~accessor~.
-            1. Let _getterClosure_ be a new Abstract Closure with no parameters that captures _string_ and performs the following steps when called:
-              1. Return NormalCompletion(_string_).
-            1. Let _getter_ be CreateBuiltinFunction(_getterClosure_, 0, "", « »).
-            1. Let _setterClosure_ be a new Abstract Closure with parameters (_value_) that captures _O_ and performs the following steps when called:
-              1. Perform ? DefinePropertyOrThrow(_O_, *"stack"*, PropertyDescriptor { [[Value]]: _value_, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true }).
-              1. Return NormalCompletion(*undefined*).
-            1. Let _setter_ be CreateBuiltinFunction(_setterClosure_, 1, "", « »).
-            1. Perform ? DefinePropertyOrThrow(_O_, *"stack"*, PropertyDescriptor { [[Get]]: _getter_, [[Set]]: _setter_, [[Enumerable]]: false, [[Configurable]]: true }).
+            1. If ? IsExtensible(_O_) is *false*, throw a *TypeError* exception.
+            1. Define a new [[ErrorStack]] internal slot on _O_.
+            1. Perform ? DefinePropertyOrThrow(_O_, *"stack"*, PropertyDescriptor { [[Get]]: %ErrorCaptureStackTraceGetter%, [[Set]]: %ErrorCaptureStackTraceSetter%, [[Enumerable]]: false, [[Configurable]]: true }).
           1. Return *undefined*.
+        </emu-alg>
+      </emu-clause>
+      <emu-clause id="sec-error.capturestacktrace-getter">
+        <h1>%ErrorCaptureStackTraceGetter% ( )</h1>
+        <p>The value of %ErrorCaptureStackTraceGetter% is a built-in function that takes no arguments. It performs the following steps when called:</p>
+        <emu-alg>
+          1. Let _O_ be the *this* value.
+          1. If _O_ has a [[StackTrace]] internal slot, then
+            1. Return _O_.[[StackTrace]].
+          1. Else,
+            1. Return *undefined*.
+        </emu-alg>
+      </emu-clause>
+      <emu-clause id="sec-error.capturestacktrace-setter">
+        <h1>%ErrorCaptureStackTraceSetter% ( _value_ )</h1>
+        <p>The value of %ErrorCaptureStackTraceSetter% is a built-in function that takes an argument _value_. It performs the following steps when called:</p>
+        <emu-alg>
+            1. Perform ? DefinePropertyOrThrow(*this* value, *"stack"*, PropertyDescriptor { [[Value]]: _value_, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true }).
+            1. Return *undefined*.
         </emu-alg>
       </emu-clause>
     </emu-clause>
