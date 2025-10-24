@@ -105,7 +105,7 @@ markEffects: true
           1. Let _realm_ be the current Realm Record.
           1. Let _strategy_ be _realm_.[[ErrorCaptureStackTraceStrategy]].
           1. If _strategy_ is ~data-property~, then
-            1. Perform ? DefinePropertyOrThrow(_O_, *"stack"*, PropertyDescriptor { [[Value]]: _string_, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true }).
+            1. Perform ? DefinePropertyOrThrow(_O_, *"stack"*, PropertyDescriptor { [[Value]]: _string_, [[Writable]]: true, [[Enumerable]]: false, [[Configurable]]: true }).
           1. Else,
             1. Assert: _strategy_ is ~accessor~.
             1. If ? IsExtensible(_O_) is *false*, throw a *TypeError* exception.
