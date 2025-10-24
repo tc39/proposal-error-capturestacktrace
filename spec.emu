@@ -109,7 +109,7 @@ markEffects: true
           1. Else,
             1. Assert: _strategy_ is ~accessor~.
             1. If ? IsExtensible(_O_) is *false*, throw a *TypeError* exception.
-            1. Define a new [[ErrorStack]] internal slot on _O_.
+            1. Define a new [[StackTrace]] internal slot on _O_.
             1. Perform ? DefinePropertyOrThrow(_O_, *"stack"*, PropertyDescriptor { [[Get]]: %ErrorCaptureStackTraceGetter%, [[Set]]: %ErrorCaptureStackTraceSetter%, [[Enumerable]]: false, [[Configurable]]: true }).
           1. Return *undefined*.
         </emu-alg>
