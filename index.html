@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/base16/solarized-light.min.css"><link rel="stylesheet" href="ecmarkup.css"><link rel="stylesheet" href="print.css" media="print"><link rel="stylesheet" href="./spec.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
 <script src="./spec.js"></script>
-<title>Error.captureStackTrace</title><script src="ecmarkup.js?cache=rwkx4fPk" defer=""></script><style>
+<title>Error.captureStackTrace</title><script src="ecmarkup.js?cache=EeN1stgx" defer=""></script><style>
     @media print {
       @page :left {
         @bottom-right {
@@ -43,7 +43,7 @@
 </ul></div><div id="menu-toggle"><svg xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%; stroke:currentColor" viewBox="0 0 120 120" width="54" height="54">
       <title>Menu</title>
       <path stroke-width="10" stroke-linecap="round" d="M30,60 h60  M30,30 m0,5 h60  M30,90 m0,-5 h60"></path>
-    </svg></div><div id="menu-spacer" class="menu-spacer"></div><div id="menu"><div id="menu-search"><input type="text" id="menu-search-box" placeholder="Search..."><div id="menu-search-results" class="inactive"></div></div><div id="menu-pins"><div class="menu-pane-header">Pins<button class="unpin-all">clear</button></div><ul id="menu-pins-list"></ul></div><div class="menu-pane-header">Table of Contents</div><div id="menu-toc"><ol class="toc"><li><span class="item-toggle-none"></span><a href="#intro" title="Introduction">Introduction</a></li><li><span class="item-toggle-none"></span><a href="#sec-code-realms" title="Realms"><span class="secnum">1</span> Realms</a></li><li><span class="item-toggle">+</span><a href="#sec-fundamental-objects" title="Fundamental Objects"><span class="secnum">20</span> Fundamental Objects</a><ol class="toc"><li><span class="item-toggle">+</span><a href="#sec-error-objects" title="Error Objects"><span class="secnum">20.5</span> Error Objects</a><ol class="toc"><li><span class="item-toggle">+</span><a href="#sec-properties-of-the-error-constructor" title="Properties of the Error Constructor"><span class="secnum">20.5.2</span> Properties of the Error Constructor</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-error.capturestacktrace" title="Error.captureStackTrace ( O [ , limit ] )"><span class="secnum">20.5.2.1</span> Error.captureStackTrace ( <var>O</var> [ , <var>limit</var> ] )</a></li></ol></li></ol></li></ol></li><li><span class="item-toggle-none"></span><a href="#sec-copyright-and-software-license" title="Copyright &amp; Software License"><span class="secnum">A</span> Copyright &amp; Software License</a></li></ol></div></div><div id="spec-container"><h1 class="version">Stage 1 Draft / October 21, 2025</h1><h1 class="title">Error.captureStackTrace</h1>
+    </svg></div><div id="menu-spacer" class="menu-spacer"></div><div id="menu"><div id="menu-search"><input type="text" id="menu-search-box" placeholder="Search..."><div id="menu-search-results" class="inactive"></div></div><div id="menu-pins"><div class="menu-pane-header">Pins<button class="unpin-all">clear</button></div><ul id="menu-pins-list"></ul></div><div class="menu-pane-header">Table of Contents</div><div id="menu-toc"><ol class="toc"><li><span class="item-toggle-none"></span><a href="#intro" title="Introduction">Introduction</a></li><li><span class="item-toggle-none"></span><a href="#sec-code-realms" title="Realms"><span class="secnum">1</span> Realms</a></li><li><span class="item-toggle-none"></span><a href="#sec-well-known-intrinsic-objects" title="Well-Known Intrinsic Objects"><span class="secnum">2</span> Well-Known Intrinsic Objects</a></li><li><span class="item-toggle">+</span><a href="#sec-fundamental-objects" title="Fundamental Objects"><span class="secnum">20</span> Fundamental Objects</a><ol class="toc"><li><span class="item-toggle">+</span><a href="#sec-error-objects" title="Error Objects"><span class="secnum">20.5</span> Error Objects</a><ol class="toc"><li><span class="item-toggle">+</span><a href="#sec-properties-of-the-error-constructor" title="Properties of the Error Constructor"><span class="secnum">20.5.2</span> Properties of the Error Constructor</a><ol class="toc"><li><span class="item-toggle-none"></span><a href="#sec-error.capturestacktrace" title="Error.captureStackTrace ( O [ , limit ] )"><span class="secnum">20.5.2.1</span> Error.captureStackTrace ( <var>O</var> [ , <var>limit</var> ] )</a></li><li><span class="item-toggle-none"></span><a href="#sec-error.capturestacktrace-getter" title="%ErrorCaptureStackTraceGetter% ( )"><span class="secnum">20.5.2.2</span> %ErrorCaptureStackTraceGetter% ( )</a></li><li><span class="item-toggle-none"></span><a href="#sec-error.capturestacktrace-setter" title="%ErrorCaptureStackTraceSetter% ( value )"><span class="secnum">20.5.2.3</span> %ErrorCaptureStackTraceSetter% ( <var>value</var> )</a></li></ol></li></ol></li></ol></li><li><span class="item-toggle-none"></span><a href="#sec-copyright-and-software-license" title="Copyright &amp; Software License"><span class="secnum">A</span> Copyright &amp; Software License</a></li></ol></div></div><div id="spec-container"><h1 class="version">Stage 1 Draft / November 18, 2025</h1><h1 class="title">Error.captureStackTrace</h1>
 
 <emu-intro id="intro">
   <h1>Introduction</h1>
@@ -76,6 +76,48 @@
   </figure></emu-table>
 </emu-clause>
 
+<emu-clause id="sec-well-known-intrinsic-objects">
+  <h1><span class="secnum">2</span> Well-Known Intrinsic Objects</h1>
+
+  <emu-table id="table-well-known-intrinsic-objects" caption="Well-Known Intrinsic Objects" oldids="table-7"><figure><figcaption>Table 2: Well-Known Intrinsic Objects</figcaption><span id="table-7"></span>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Intrinsic Name
+          </th>
+          <th>
+            Global Name
+          </th>
+          <th>
+            ECMAScript Language Association
+          </th>
+        </tr>
+      </thead>
+      <tbody><tr>
+        <td>
+          %ErrorCaptureStackTraceGetter%
+        </td>
+        <td>
+        </td>
+        <td>
+          The getter installed by <code>Error.captureStackTrace</code> (<emu-xref href="#sec-error.capturestacktrace-getter" id="_ref_0"><a href="#sec-error.capturestacktrace-getter">20.5.2.2</a></emu-xref>)
+        </td>
+      </tr>
+      <tr>
+        <td>
+          %ErrorCaptureStackTraceSetter%
+        </td>
+        <td>
+        </td>
+        <td>
+          The setter installed by <code>Error.captureStackTrace</code> (<emu-xref href="#sec-error.capturestacktrace-setter" id="_ref_1"><a href="#sec-error.capturestacktrace-setter">20.5.2.3</a></emu-xref>)
+        </td>
+      </tr>
+    </tbody></table>
+  </figure></emu-table>
+</emu-clause>
+
 <emu-clause id="sec-fundamental-objects" number="20">
   <h1><span class="secnum">20</span> Fundamental Objects</h1>
 
@@ -88,7 +130,17 @@
       <emu-clause id="sec-error.capturestacktrace">
         <h1><span class="secnum">20.5.2.1</span> Error.captureStackTrace ( <var>O</var> [ , <var>limit</var> ] )</h1>
         <emu-alg><ol><li>If <var>O</var> <emu-xref href="#sec-object-type"><a href="https://tc39.es/ecma262/#sec-object-type">is not an Object</a></emu-xref>, throw a <emu-val>TypeError</emu-val> exception.</li><li>If <emu-xref aoid="IsCallable"><a href="https://tc39.es/ecma262/#sec-iscallable">IsCallable</a></emu-xref>(<var>limit</var>) is <emu-val>true</emu-val>, then<ol><li>Let <var>string</var> be an <emu-xref href="#implementation-defined"><a href="https://tc39.es/ecma262/#implementation-defined">implementation-defined</a></emu-xref> string that represents the current stack trace, with all stack
-               frames above the topmost call to <var>limit</var>, including that call, omitted from the stack trace.</li><li>NOTE: This can be used to hide implementation details on the stack trace that aren't useful to user.</li></ol></li><li>Else,<ol><li>Let <var>string</var> be an <emu-xref href="#implementation-defined"><a href="https://tc39.es/ecma262/#implementation-defined">implementation-defined</a></emu-xref> string that represents the current stack trace.</li></ol></li><li>Let <var>realm</var> be <emu-xref href="#current-realm"><a href="https://tc39.es/ecma262/#current-realm">the current Realm Record</a></emu-xref>.</li><li>Let <var>strategy</var> be <var>realm</var>.<var class="field">[[ErrorCaptureStackTraceStrategy]]</var>.</li><li>If <var>strategy</var> is <emu-const>data-property</emu-const>, then<ol><li>Perform ?&nbsp;<emu-xref aoid="DefinePropertyOrThrow"><a href="https://tc39.es/ecma262/#sec-definepropertyorthrow" class="e-user-code">DefinePropertyOrThrow</a></emu-xref>(<var>O</var>, <emu-val>"stack"</emu-val>, PropertyDescriptor { <var class="field">[[Value]]</var>: <var>string</var>, <var class="field">[[Writable]]</var>: true, <var class="field">[[Enumerable]]</var>: true, <var class="field">[[Configurable]]</var>: true&nbsp;}).</li></ol></li><li>Else,<ol><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: <var>strategy</var> is <emu-const>accessor</emu-const>.</li><li>Let <var>getterClosure</var> be a new <emu-xref href="#sec-abstract-closure"><a href="https://tc39.es/ecma262/#sec-abstract-closure">Abstract Closure</a></emu-xref> with no parameters that captures <var>string</var> and performs the following steps when called:<ol><li>Return <emu-xref aoid="NormalCompletion"><a href="https://tc39.es/ecma262/#sec-normalcompletion">NormalCompletion</a></emu-xref>(<var>string</var>).</li></ol></li><li>Let <var>getter</var> be <emu-xref aoid="CreateBuiltinFunction"><a href="https://tc39.es/ecma262/#sec-createbuiltinfunction">CreateBuiltinFunction</a></emu-xref>(<var>getterClosure</var>, 0, "", «&nbsp;»).</li><li>Let <var>setterClosure</var> be a new <emu-xref href="#sec-abstract-closure"><a href="https://tc39.es/ecma262/#sec-abstract-closure">Abstract Closure</a></emu-xref> with parameters (<var>value</var>) that captures <var>O</var> and performs the following steps when called:<ol><li>Perform ?&nbsp;<emu-xref aoid="DefinePropertyOrThrow"><a href="https://tc39.es/ecma262/#sec-definepropertyorthrow" class="e-user-code">DefinePropertyOrThrow</a></emu-xref>(<var>O</var>, <emu-val>"stack"</emu-val>, PropertyDescriptor { <var class="field">[[Value]]</var>: <var>value</var>, <var class="field">[[Writable]]</var>: true, <var class="field">[[Enumerable]]</var>: true, <var class="field">[[Configurable]]</var>: true&nbsp;}).</li><li>Return <emu-xref aoid="NormalCompletion"><a href="https://tc39.es/ecma262/#sec-normalcompletion">NormalCompletion</a></emu-xref>(<emu-val>undefined</emu-val>).</li></ol></li><li>Let <var>setter</var> be <emu-xref aoid="CreateBuiltinFunction"><a href="https://tc39.es/ecma262/#sec-createbuiltinfunction">CreateBuiltinFunction</a></emu-xref>(<var>setterClosure</var>, 1, "", «&nbsp;»).</li><li>Perform ?&nbsp;<emu-xref aoid="DefinePropertyOrThrow"><a href="https://tc39.es/ecma262/#sec-definepropertyorthrow" class="e-user-code">DefinePropertyOrThrow</a></emu-xref>(<var>O</var>, <emu-val>"stack"</emu-val>, PropertyDescriptor { <var class="field">[[Get]]</var>: <var>getter</var>, <var class="field">[[Set]]</var>: <var>setter</var>, <var class="field">[[Enumerable]]</var>: false, <var class="field">[[Configurable]]</var>: true&nbsp;}).</li></ol></li><li>Return <emu-val>undefined</emu-val>.</li></ol></emu-alg>
+               frames above the topmost call to <var>limit</var>, including that call, omitted from the stack trace.</li><li>NOTE: This can be used to hide implementation details on the stack trace that aren't useful to user.</li></ol></li><li>Else,<ol><li>Let <var>string</var> be an <emu-xref href="#implementation-defined"><a href="https://tc39.es/ecma262/#implementation-defined">implementation-defined</a></emu-xref> string that represents the current stack trace.</li></ol></li><li>Let <var>realm</var> be <emu-xref href="#current-realm"><a href="https://tc39.es/ecma262/#current-realm">the current Realm Record</a></emu-xref>.</li><li>Let <var>strategy</var> be <var>realm</var>.<var class="field">[[ErrorCaptureStackTraceStrategy]]</var>.</li><li>If <var>strategy</var> is <emu-const>data-property</emu-const>, then<ol><li>Perform ?&nbsp;<emu-xref aoid="DefinePropertyOrThrow"><a href="https://tc39.es/ecma262/#sec-definepropertyorthrow" class="e-user-code">DefinePropertyOrThrow</a></emu-xref>(<var>O</var>, <emu-val>"stack"</emu-val>, PropertyDescriptor { <var class="field">[[Value]]</var>: <var>string</var>, <var class="field">[[Writable]]</var>: true, <var class="field">[[Enumerable]]</var>: false, <var class="field">[[Configurable]]</var>: true&nbsp;}).</li></ol></li><li>Else,<ol><li><emu-xref href="#assert"><a href="https://tc39.es/ecma262/#assert">Assert</a></emu-xref>: <var>strategy</var> is <emu-const>accessor</emu-const>.</li><li>If ?&nbsp;<emu-xref aoid="IsExtensible"><a href="https://tc39.es/ecma262/#sec-isextensible-o" class="e-user-code">IsExtensible</a></emu-xref>(<var>O</var>) is <emu-val>false</emu-val>, throw a <emu-val>TypeError</emu-val> exception.</li><li>Define a new <var class="field">[[StackTrace]]</var> internal slot on <var>O</var>.</li><li>Perform ?&nbsp;<emu-xref aoid="DefinePropertyOrThrow"><a href="https://tc39.es/ecma262/#sec-definepropertyorthrow" class="e-user-code">DefinePropertyOrThrow</a></emu-xref>(<var>O</var>, <emu-val>"stack"</emu-val>, PropertyDescriptor { <var class="field">[[Get]]</var>: %ErrorCaptureStackTraceGetter%, <var class="field">[[Set]]</var>: %ErrorCaptureStackTraceSetter%, <var class="field">[[Enumerable]]</var>: false, <var class="field">[[Configurable]]</var>: true&nbsp;}).</li></ol></li><li>Return <emu-val>undefined</emu-val>.</li></ol></emu-alg>
+      </emu-clause>
+      <emu-clause id="sec-error.capturestacktrace-getter">
+        <h1><span class="secnum">20.5.2.2</span> %ErrorCaptureStackTraceGetter% ( )</h1>
+        <p>The value of %ErrorCaptureStackTraceGetter% is a built-in function that takes no arguments. It performs the following steps when called:</p>
+        <emu-alg><ol><li>Let <var>O</var> be the <emu-val>this</emu-val> value.</li><li>If <var>O</var> has a <var class="field">[[StackTrace]]</var> internal slot, then<ol><li>Return <var>O</var>.<var class="field">[[StackTrace]]</var>.</li></ol></li><li>Else,<ol><li>Return <emu-val>undefined</emu-val>.</li></ol></li></ol></emu-alg>
+      </emu-clause>
+      <emu-clause id="sec-error.capturestacktrace-setter">
+        <h1><span class="secnum">20.5.2.3</span> %ErrorCaptureStackTraceSetter% ( <var>value</var> )</h1>
+        <p>The value of %ErrorCaptureStackTraceSetter% is a built-in function that takes an argument <var>value</var>. It performs the following steps when called:</p>
+        <emu-alg><ol><li>Perform ?&nbsp;<emu-xref aoid="DefinePropertyOrThrow"><a href="https://tc39.es/ecma262/#sec-definepropertyorthrow" class="e-user-code">DefinePropertyOrThrow</a></emu-xref>(<emu-val>this</emu-val> value, <emu-val>"stack"</emu-val>, PropertyDescriptor { <var class="field">[[Value]]</var>: <var>value</var>, <var class="field">[[Writable]]</var>: true, <var class="field">[[Enumerable]]</var>: true, <var class="field">[[Configurable]]</var>: true&nbsp;}).</li><li>Return <emu-val>undefined</emu-val>.</li></ol></emu-alg>
       </emu-clause>
     </emu-clause>
   </emu-clause>
