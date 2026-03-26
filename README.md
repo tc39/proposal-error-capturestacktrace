@@ -1,6 +1,6 @@
 # Error.captureStackTrace
 
-**Stage**: [Stage 1](https://tc39.es/process-document/)
+**Stage**: [Stage 2](https://tc39.es/process-document/)
 
 **Champions**: Matthew Gaudet (Mozilla), Daniel Minor (Mozilla)
 
@@ -9,6 +9,10 @@ V8 has had a non-standard [Stack Trace API](https://v8.dev/docs/stack-trace-api)
 In August 2023, [JSC also shipped this method](https://github.com/WebKit/WebKit/commit/997e074bb35ed07b69c9b821141c91dd548e0d02)
 
 This method [has now turned into a web-compatability problem](https://bugzilla.mozilla.org/show_bug.cgi?id=1886820), and as a result we should now standardize it.
+
+NOTE: We're pausing work on this proposal while waiting to see what happens with two related proposals: [Error option limit](https://github.com/tc39/proposal-error-limit-option)
+and [Error option framesAbove](https://github.com/tc39/proposal-error-frames-above). If these proposals advance, are implemented, and replace enough of the current use of
+`Error.captureStrackTrace` we may be able to avoid standardizing it.
 
 ## `Error.captureStackTrace`
 
@@ -56,6 +60,7 @@ The text for the contents of the stack string should probably be something along
 - The [Error Stack Accessor](https://github.com/tc39/proposal-error-stack-accessor) proposal could be the other route by which the spec starts to talk about stacks. Note that `Error.captureStackTrace` works with any object, whereas the stack accessor proposal only works with `Error` instances, so the two proposals are solving different problems.
 
 ## History
+- Presented November 2025, and achieved Stage 2 [notes](https://github.com/tc39/notes/blob/main/meetings/2025-11/november-18.md#errorcapturestacktrace-for-stage-2)
 - Presented February 2025, and achieved Stage 1 [notes](https://github.com/tc39/notes/blob/main/meetings/2025-02/february-19.md#errorcapturestacktrace-for-stage-1)
 - Presented July 2025 [notes](https://github.com/tc39/notes/blob/main/meetings/2025-07/july-29.md#errorcapturestacktrace)
 - Discussed at TG3 weekly meeting, October 8, 2025.
